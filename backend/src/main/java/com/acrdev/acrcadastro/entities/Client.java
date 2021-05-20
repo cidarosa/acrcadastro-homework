@@ -1,14 +1,29 @@
 package com.acrdev.acrcadastro.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-public class Client {
+/*@Entity
+@Table(name="tb_client")*/
+
+public class Client implements Serializable {	
 	
+	private static final long serialVersionUID = 1L;
+	
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 */
 	private Long id;
+	
 	private String name;
 	private String cpf;
 	private Double income;
-	private Instant birthDate;
+	/*
+	 * @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE") //UTC
+	 */	private Instant birthDate;
+	
 	private Integer children;
 	
 	public Client() { }
