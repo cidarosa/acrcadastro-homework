@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.acrdev.acrcadastro.dto.ClienteDTO;
 import com.acrdev.acrcadastro.entities.Client;
 import com.acrdev.acrcadastro.repositories.ClientRepository;
+import com.acrdev.acrcadastro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -31,7 +32,7 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public ClienteDTO findById(Long id) {
 		Optional<Client> obj = repository.findById(id);
-		Client entity = obj.get();
+		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		
 		return new ClienteDTO(entity);
 	}
