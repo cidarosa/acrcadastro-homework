@@ -37,4 +37,20 @@ public class ClientService {
 		return new ClienteDTO(entity);
 	}
 
+	@Transactional
+	public ClienteDTO insert(ClienteDTO dto) {
+		//converter dto para entidade
+		Client entity = new Client();
+		entity.setName(dto.getName());
+		entity.setCpf(dto.getCpf());
+		entity.setIncome(dto.getIncome());
+		entity.setBirthDate(dto.getBirthDate());
+		entity.setChildren(dto.getChildren());
+		
+		entity = repository.save(entity);
+		
+		return new ClienteDTO(entity);
+		
+	}
+
 }
